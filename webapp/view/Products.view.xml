@@ -10,8 +10,18 @@
         <List
             headerText="Products"
             headerLevel="H2"
+            items="{ 
+                path: 'frutas>/'
+            }"
         >
             <StandardListItem
+                type="Active"
+                title="{frutas>name}"
+                counter="{frutas>quantity}"
+                press="onPressErrorListItem"
+            />
+
+            <!-- <StandardListItem
                 type="Active"
                 title="Banana"
                 counter="10"
@@ -20,13 +30,8 @@
             <StandardListItem
                 title="Maçã"
                 counter="1"
-            />
-            <StandardListItem
-                type="Active"
-                title="Pera"
-                counter="2"
-                press="onPressErrorListItem"
-            />
+            /> -->
+            
         </List>
     </Page>
 </mvc:View>

@@ -13,11 +13,18 @@ sap.ui.define([
             const frutas = [
                 {
                     id: 1,
-                    name: "Banana"
+                    name: "Banana",
+                    quantity: 20
                 },
                 {
                     id: 2,
-                    name: "Banana"
+                    name: "Maça",
+                    quantity: 18
+                },
+                {
+                    id: 2,
+                    name: "Kiwi",
+                    quantity: 2
                 }
             ];
 
