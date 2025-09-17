@@ -16,15 +16,7 @@
       "toolsId": "f76604ec-80c6-4ec3-8c84-d09de89f81b8"
     },
     "dataSources": {
-      "mainService": {
-        "uri": "/V2/Northwind/Northwind.svc/",
-        "type": "OData",
-        "settings": {
-          "annotations": [],
-          "localUri": "localService/mainService/metadata.xml",
-          "odataVersion": "2.0"
-        }
-      }
+      
     },
     "crossNavigation": {
       "inbounds": {

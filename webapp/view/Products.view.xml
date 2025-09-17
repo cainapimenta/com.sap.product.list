@@ -11,14 +11,15 @@
             headerText="Products"
             headerLevel="H2"
             items="{ 
-                path: 'frutas>/'
+                path: 'products>/'
             }"
+            id="productListId"
         >
             <StandardListItem
                 type="Active"
-                title="{frutas>name}"
-                counter="{frutas>quantity}"
-                press="onPressErrorListItem"
+                title="{products>ProductName}"
+                counter="{products>UnitsInStock}"
+                press="onPressListItem"
             />
 
             <!-- <StandardListItem
