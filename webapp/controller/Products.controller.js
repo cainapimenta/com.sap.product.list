@@ -55,6 +55,7 @@ sap.ui.define([
         },
         onSearch(oEvent) {
             const aFilters = [];
+            
             const oSource = oEvent.getSource();
             const value = oSource.getValue();
 
@@ -67,22 +68,6 @@ sap.ui.define([
 
                 aFilters.push(productNameFilter);
             }
-
-            // const oDataModel = new ODataModel('/V2/Northwind/Northwind.svc/');
-            // oDataModel.read('/Products', {
-            //     filters: aFilters,
-            //     success: (oProducts) => {
-
-            //         const aProducts = oProducts.results;
-            //         const model = new JSONModel(aProducts);
-            //         this.getView().setModel(model, "products");
-            //     },
-            //     error: (ex) => {
-            //         MessageBox.error(ex.message, {
-            //             title: "Erro na requisição"
-            //         });
-            //     }
-            // });
 
             const productList = this.byId('productListId');
             const bindItems = productList.getBinding('items');
