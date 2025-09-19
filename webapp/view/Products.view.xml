@@ -10,12 +10,25 @@
         <List
             headerText="Products"
             headerLevel="H2"
-            items="{ 
-                path: '/Products'
-            }"
             id="productListId"
             growing="true"
             growingScrollToLoad="true"
+            items="{ 
+                path: '/Products',
+                parameters: {
+                    expand: 'Category'
+                },
+                sorter: [
+                    {
+                        path: 'Category/CategoryName',
+                        descending: false,
+                        group: true
+                    },
+                    {
+                        path: 'ProductName'
+                    }
+                ]
+            }"
         >
             <headerToolbar>
                 <OverflowToolbar>
@@ -23,7 +36,7 @@
                         text="Products"
                         level="H2"
                     />
-                    
+
                     <ToolbarSpacer />
 
                     <SearchField
