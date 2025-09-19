@@ -1,6 +1,7 @@
 <mvc:View
     controllerName="com.alfa.products.list.controller.Products"
     xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
     xmlns="sap.m"
 >
     <Page
@@ -46,7 +47,49 @@
                 </OverflowToolbar>
             </headerToolbar>
             <items>
-                <StandardListItem
+                <CustomListItem type="Navigation" press="onPressListItem">
+                    <HBox justifyContent="SpaceBetween">
+                        <HBox>
+                            <core:Icon
+                                src="sap-icon://product"
+                                size="2rem"
+                                class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"
+                            />
+                            <VBox
+                                class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"
+                            >
+                                <Title text="{ProductID} - {ProductName}" />
+                                <ObjectNumber
+                                    class="sapUiSmallMarginBottom"
+                                    inverted="true"
+                                    number="{
+                                        parts: [{path:'UnitPrice'},{value: 'BRL'}],
+                                        type:'sap.ui.model.type.Currency',
+                                        formatOptions: {showMeasure: true}
+                                    }"
+                                    state="{
+                                        path: 'UnitPrice',
+                                        formatter: '.formatter.priceStatus'
+                                    }"
+                                />
+                            </VBox>
+                        </HBox>
+
+                        <VBox class="sapUiSmallMargin">
+                            <Text text='{UnitsInStock} un' visible="{= !!${UnitsInStock}}" class="custom"></Text>
+                            <ObjectStatus 
+                                text="Fora de estoque"
+                                active="false"
+                                inverted="true"
+                                state="Indication12"
+                                icon="sap-icon://error"
+                                visible="{= !${UnitsInStock}}"
+                            />
+                        </VBox>
+                    </HBox>
+                </CustomListItem>
+
+                <!-- <StandardListItem
                     type="Active"
                     title="{
                         parts: ['ProductName', 'UnitPrice'],
@@ -57,7 +100,7 @@
                         formatter: '.formatter.multiply'
                     }"
                     press="onPressListItem"
-                />
+                /> -->
             </items>
         </List>
     </Page>
