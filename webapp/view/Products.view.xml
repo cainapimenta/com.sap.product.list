@@ -48,8 +48,14 @@
             <items>
                 <StandardListItem
                     type="Active"
-                    title="{ProductName}"
-                    counter="{UnitsInStock}"
+                    title="{
+                        parts: ['ProductName', 'UnitPrice'],
+                        formatter: '.formatter.toUpperCase'
+                    }"
+                    counter="{
+                        path: 'UnitsInStock',
+                        formatter: '.formatter.multiply'
+                    }"
                     press="onPressListItem"
                 />
             </items>

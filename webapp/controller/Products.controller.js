@@ -4,12 +4,15 @@ sap.ui.define([
     "sap/m/MessageBox",
     "sap/ui/model/json/JSONModel",
     "sap/ui/model/odata/v2/ODataModel",
-    'sap/ui/model/Filter',
-    'sap/ui/model/FilterOperator'
-], (Controller, MessageToast, MessageBox, JSONModel, ODataModel, Filter, FilterOperator) => {
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator",
+    "com/alfa/products/list/model/formatter"
+], (Controller, MessageToast, MessageBox, JSONModel, ODataModel, Filter, FilterOperator, formatter) => {
     "use strict";
 
     return Controller.extend("com.alfa.products.list.controller.Products", {
+        formatter: formatter,
+
         onInit() {
 
             // const productList = this.byId('productListId');
