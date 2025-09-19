@@ -14,38 +14,13 @@ sap.ui.define([
         formatter: formatter,
 
         onInit() {
-
-            // const productList = this.byId('productListId');
-            // productList.setBusy(true);
-
-            // const oDataModel = new ODataModel('/V2/Northwind/Northwind.svc/');
-            // oDataModel.read('/Products', {
-            //     success: (oProducts) => {
-
-            //         const aProducts = oProducts.results;
-            //         const model = new JSONModel(aProducts);
-            //         this.getView().setModel(model, "products");
-
-            //         productList.setBusy(false);
-            //     },
-            //     error: (ex) => {
-            //         productList.setBusy(false);
-
-            //         MessageBox.error(ex.message, {
-            //             title: "Erro na requisição"
-            //         });
-            //     }
-            // });
         },
 
         onPressListItem(oEvent) {
             const oSource = oEvent.getSource();
             const titleItem = oSource.getTitle();
 
-            const oComponent = this.getOwnerComponent();
-            const i18nModel = oComponent.getModel('i18n');
-            const i18nBundle = i18nModel.getResourceBundle();
-            const msg = i18nBundle.getText('messageOnClick', [titleItem])
+            const msg = this.i18nText('messageOnClick', [titleItem])
 
             MessageToast.show(msg);
         },
@@ -58,7 +33,7 @@ sap.ui.define([
         },
         onSearch(oEvent) {
             const aFilters = [];
-            
+
             const oSource = oEvent.getSource();
             const value = oSource.getValue();
 
@@ -75,6 +50,15 @@ sap.ui.define([
             const productList = this.byId('productListId');
             const bindItems = productList.getBinding('items');
             bindItems.filter(aFilters);
+        },
+
+        i18nText(sKey, aText) {
+            const component = this.getOwnerComponent();
+            const i18nModel = component.getModel("i18n");
+            const i18nBundle = i18nModel.getResourceBundle();
+            const messageOnClick = i18nBundle.getText(sKey, aText);
+
+            return messageOnClick;
         }
     });
 });
