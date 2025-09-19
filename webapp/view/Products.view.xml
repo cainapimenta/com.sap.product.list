@@ -11,28 +11,35 @@
             headerText="Products"
             headerLevel="H2"
             items="{ 
-                path: 'products>/'
+                path: '/Products'
             }"
             id="productListId"
+            growing="true"
+            growingScrollToLoad="true"
         >
-            <StandardListItem
-                type="Active"
-                title="{products>ProductName}"
-                counter="{products>UnitsInStock}"
-                press="onPressListItem"
-            />
+            <headerToolbar>
+                <OverflowToolbar>
+                    <Title
+                        text="Products"
+                        level="H2"
+                    />
+                    
+                    <ToolbarSpacer />
 
-            <!-- <StandardListItem
-                type="Active"
-                title="Banana"
-                counter="10"
-                press="onPressListItem"
-            />
-            <StandardListItem
-                title="Maçã"
-                counter="1"
-            /> -->
-            
+                    <SearchField
+                        width="40rem"
+                        liveChange="onSearch"
+                    />
+                </OverflowToolbar>
+            </headerToolbar>
+            <items>
+                <StandardListItem
+                    type="Active"
+                    title="{ProductName}"
+                    counter="{UnitsInStock}"
+                    press="onPressListItem"
+                />
+            </items>
         </List>
     </Page>
 </mvc:View>

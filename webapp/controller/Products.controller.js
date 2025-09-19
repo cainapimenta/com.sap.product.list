@@ -3,59 +3,36 @@ sap.ui.define([
     "sap/m/MessageToast",
     "sap/m/MessageBox",
     "sap/ui/model/json/JSONModel",
-    "sap/ui/model/odata/v2/ODataModel"
-], (Controller, MessageToast, MessageBox, JSONModel, ODataModel) => {
+    "sap/ui/model/odata/v2/ODataModel",
+    'sap/ui/model/Filter',
+    'sap/ui/model/FilterOperator'
+], (Controller, MessageToast, MessageBox, JSONModel, ODataModel, Filter, FilterOperator) => {
     "use strict";
 
     return Controller.extend("com.alfa.products.list.controller.Products", {
         onInit() {
 
-            const productList = this.byId('productListId');
-            productList.setBusy(true);
+            // const productList = this.byId('productListId');
+            // productList.setBusy(true);
 
-            const oDataModel = new ODataModel('/V2/Northwind/Northwind.svc/');
-            oDataModel.read('/Products', {
-                success: (oProducts) => {
-                    console.log(oProducts);
+            // const oDataModel = new ODataModel('/V2/Northwind/Northwind.svc/');
+            // oDataModel.read('/Products', {
+            //     success: (oProducts) => {
 
-                    const aProducts = oProducts.results;
-                    const model = new JSONModel(aProducts);
-                    this.getView().setModel(model, "products");
+            //         const aProducts = oProducts.results;
+            //         const model = new JSONModel(aProducts);
+            //         this.getView().setModel(model, "products");
 
-                    productList.setBusy(false);
-                },
-                error: (ex) => {
-                    productList.setBusy(false);
-
-                    MessageBox.error(ex.message, {
-                        title: "Erro na requisição"
-                    });
-                }
-            });
-
-
-            // // Simulando backend
-            // // GET /frutas
-            // const frutas = [
-            //     {
-            //         id: 1,
-            //         name: "Banana",
-            //         quantity: 20
+            //         productList.setBusy(false);
             //     },
-            //     {
-            //         id: 2,
-            //         name: "Maça",
-            //         quantity: 18
-            //     },
-            //     {
-            //         id: 2,
-            //         name: "Kiwi",
-            //         quantity: 2
+            //     error: (ex) => {
+            //         productList.setBusy(false);
+
+            //         MessageBox.error(ex.message, {
+            //             title: "Erro na requisição"
+            //         });
             //     }
-            // ];
-
-            // const model = new JSONModel(frutas);
-            // this.getView().setModel(model, 'frutas');
+            // });
         },
 
         onPressListItem(oEvent) {
@@ -75,6 +52,41 @@ sap.ui.define([
                     title: 'Erro no produto'
                 }
             )
+        },
+        onSearch(oEvent) {
+            const aFilters = [];
+            const oSource = oEvent.getSource();
+            const value = oSource.getValue();
+
+            if (value) {
+                const productNameFilter = new Filter({
+                    path: "ProductName",
+                    operator: FilterOperator.Contains,
+                    value1: value
+                });
+
+                aFilters.push(productNameFilter);
+            }
+
+            // const oDataModel = new ODataModel('/V2/Northwind/Northwind.svc/');
+            // oDataModel.read('/Products', {
+            //     filters: aFilters,
+            //     success: (oProducts) => {
+
+            //         const aProducts = oProducts.results;
+            //         const model = new JSONModel(aProducts);
+            //         this.getView().setModel(model, "products");
+            //     },
+            //     error: (ex) => {
+            //         MessageBox.error(ex.message, {
+            //             title: "Erro na requisição"
+            //         });
+            //     }
+            // });
+
+            const productList = this.byId('productListId');
+            const bindItems = productList.getBinding('items');
+            bindItems.filter(aFilters);
         }
     });
 });
