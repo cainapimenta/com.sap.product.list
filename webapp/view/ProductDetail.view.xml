@@ -1,0 +1,14 @@
+<mvc:View
+    controllerName="com.alfa.products.list.controller.ProductDetail"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+>
+    <Page
+        id="productDetail"
+        title="{i18n>titleProductDetail} - {detail>/ProductID}"
+        showNavButton="true"
+        navButtonPress="navBack"
+    >
+    </Page>
+</mvc:View>

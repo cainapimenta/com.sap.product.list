@@ -18,11 +18,12 @@ sap.ui.define([
 
         onPressListItem(oEvent) {
             const oSource = oEvent.getSource();
-            const titleItem = oSource.getTitle();
+            const oContext = oSource.getBindingContext();
+            const productId = oContext.getProperty("ProductID");
 
-            const msg = this.i18nText('messageOnClick', [titleItem])
-
-            MessageToast.show(msg);
+            this.navTo('RouteProductDetail', {
+                productId: productId
+            });
         },
         onPressErrorListItem() {
             MessageBox.error('Erro, você precisa revisar.',
@@ -59,6 +60,12 @@ sap.ui.define([
             const messageOnClick = i18nBundle.getText(sKey, aText);
 
             return messageOnClick;
+        },
+        navTo(route, params) {
+            const oComponent = this.getOwnerComponent();
+            const oRouter = oComponent.getRouter();
+
+            oRouter.navTo(route, params);
         }
     });
 });

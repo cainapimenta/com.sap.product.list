@@ -108,12 +108,23 @@
           "target": [
             "TargetProducts"
           ]
+        },
+        {
+          "name": "RouteProductDetail",
+          "pattern": "detail/{productId}",
+          "target": [
+            "TargetProductDetail"
+          ]
         }
       ],
       "targets": {
         "TargetProducts": {
           "id": "Products",
           "name": "Products"
+        },
+        "TargetProductDetail": {
+          "id": "ProductDetail",
+          "name": "ProductDetail"
         }
       }
     },
