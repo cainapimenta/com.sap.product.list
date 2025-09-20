@@ -120,11 +120,13 @@
       "targets": {
         "TargetProducts": {
           "id": "Products",
-          "name": "Products"
+          "name": "Products",
+          "controlAggregation": "masterPages"
         },
         "TargetProductDetail": {
           "id": "ProductDetail",
-          "name": "ProductDetail"
+          "name": "ProductDetail",
+          "controlAggregation": "detailPages"
         }
       }
     },
