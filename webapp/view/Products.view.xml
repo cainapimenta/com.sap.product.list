@@ -3,12 +3,66 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:core="sap.ui.core"
     xmlns="sap.m"
+    xmlns:f="sap.f"
 >
-    <Page
-        id="product"
-        title="{i18n>title}"
-    >
-        <List
+    <f:DynamicPage id="product">
+        <!-- DynamicPage Title-->
+        <f:title>
+            <f:DynamicPageTitle>
+                <!-- Title -->
+                <f:heading>
+                    <Title text="{i18n>title}" />
+                </f:heading>
+
+                <!-- SubTitle -->
+                <f:expandedContent>
+                    <Text text="Lista de produtos atualizada" />
+                </f:expandedContent>
+
+                <f:navigationActions>
+                    <Button
+                        icon="sap-icon://settings"
+                        type="Transparent"
+                    />
+                    <Button
+                        icon="sap-icon://full-screen"
+                        type="Transparent"
+                    />
+                </f:navigationActions>
+            </f:DynamicPageTitle>
+        </f:title>
+
+        <!-- Header -->
+        <f:header>
+            <f:DynamicPageHeader>
+                <HBox>
+                    <VBox class="sapUiMediumMarginEnd">
+                        <ObjectAttribute
+                            title="Planta"
+                            text="São Paulo"
+                        />
+                        <ObjectAttribute
+                            title="Capacidade"
+                            text="100m²"
+                        />
+                        <ObjectAttribute
+                            title="Vagas"
+                            text="18"
+                        />
+                    </VBox>
+
+                    <VBox>
+                        <ObjectAttribute title="Categoria mais vendidada" />
+                        <ObjectStatus
+                            text="Beverages"
+                            state="Information"
+                        />
+                    </VBox>
+                </HBox>
+            </f:DynamicPageHeader>
+        </f:header>
+
+        <!-- <List
             headerText="Products"
             headerLevel="H2"
             id="productListId"
@@ -88,20 +142,7 @@
                         </VBox>
                     </HBox>
                 </CustomListItem>
-
-                <!-- <StandardListItem
-                    type="Active"
-                    title="{
-                        parts: ['ProductName', 'UnitPrice'],
-                        formatter: '.formatter.toUpperCase'
-                    }"
-                    counter="{
-                        path: 'UnitsInStock',
-                        formatter: '.formatter.multiply'
-                    }"
-                    press="onPressListItem"
-                /> -->
             </items>
-        </List>
-    </Page>
+        </List> -->
+    </f:DynamicPage>
 </mvc:View>

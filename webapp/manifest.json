@@ -91,7 +91,7 @@
     },
     "routing": {
       "config": {
-        "routerClass": "sap.m.routing.Router",
+        "routerClass": "sap.f.routing.Router",
         "controlAggregation": "pages",
         "controlId": "app",
         "transition": "slide",
@@ -105,6 +105,7 @@
         {
           "name": "RouteProducts",
           "pattern": ":?query:",
+          "layout": "OneColumn",
           "target": [
             "TargetProducts"
           ]
@@ -112,7 +113,9 @@
         {
           "name": "RouteProductDetail",
           "pattern": "detail/{productId}",
+          "layout": "TwoColumnsMidExpanded",
           "target": [
+            "TargetProducts",
             "TargetProductDetail"
           ]
         }
@@ -121,12 +124,12 @@
         "TargetProducts": {
           "id": "Products",
           "name": "Products",
-          "controlAggregation": "masterPages"
+          "controlAggregation": "beginColumnPages"
         },
         "TargetProductDetail": {
           "id": "ProductDetail",
           "name": "ProductDetail",
-          "controlAggregation": "detailPages"
+          "controlAggregation": "midColumnPages"
         }
       }
     },

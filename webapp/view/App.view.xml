@@ -1,9 +1,10 @@
-<mvc:View controllerName="com.alfa.products.list.controller.App"
+<mvc:View  controllerName="com.alfa.products.list.controller.App"
     displayBlock="true"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    height="100%">
     <!-- <App id="app">
     </App> -->
-    <SplitApp id="app">
-    </SplitApp>
+    <f:FlexibleColumnLayout id="app" />
 </mvc:View>
