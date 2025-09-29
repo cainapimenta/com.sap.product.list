@@ -10,7 +10,7 @@ sap.ui.define([
         onInit() {
             const oComponent = this.getOwnerComponent();
             const oRouter = oComponent.getRouter();
-            
+
             const oRouteDetail = oRouter.getRoute("RouteProductDetail");
             oRouteDetail.attachPatternMatched(this.onObjectMatched, this);
         },
@@ -19,15 +19,24 @@ sap.ui.define([
             const oArgs = oEvent.getParameter("arguments");
             const sProductId = oArgs.productId;
 
-            if(!sProductId) {
-                console.log('error');
-            }
+            this.getView().bindElement({
+                path: `/Products(${sProductId})`,
+                parameters: {
+                    expand: 'Category, Supplier'
+                },
+                events: {
+                    dataRequested: () => {
+                        console.log('dataRequested');
+                        this.getView().setBusy(true);
+                    },
+                    dataReceived: () => {
+                        console.log('dataReceived');
 
-            const oProductModel = new JSONModel({
-                ProductID: sProductId
+                        this.getView().setBusy(false);
+                    }
+                }
             });
-            
-            this.getView().setModel(oProductModel, "detail");
+
         },
 
         navBack() {

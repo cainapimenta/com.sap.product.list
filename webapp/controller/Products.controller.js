@@ -48,7 +48,8 @@ sap.ui.define([
                 aFilters.push(productNameFilter);
             }
 
-            const productList = this.byId('productListId');
+            // const productList = this.byId('productListId');
+            const productList = this.byId('productsTableId');
             const bindItems = productList.getBinding('items');
             bindItems.filter(aFilters);
         },

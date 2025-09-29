@@ -19,6 +19,10 @@
                     <Text text="Lista de produtos atualizada" />
                 </f:expandedContent>
 
+                <f:snappedContent>
+                    <Text text="Lista de produtos atualizada" />
+                </f:snappedContent>
+
                 <f:navigationActions>
                     <Button
                         icon="sap-icon://settings"
@@ -61,6 +65,96 @@
                 </HBox>
             </f:DynamicPageHeader>
         </f:header>
+
+        <!-- Conteudo -->
+        <f:content>
+            <VBox>
+                <!-- OverflowToolbar para filtar -->
+                <OverflowToolbar class="sapFDynamicPageAlingContent">
+                    <ToolbarSpacer />
+
+                    <SearchField
+                        width="17.5rem"
+                        liveChange=".onSearch"
+                    />
+
+                    <OverflowToolbarButton
+                        icon="sap-icon://add"
+                        type="Transparent"
+                    />
+
+                    <OverflowToolbarButton
+                        icon="sap-icon://sort"
+                        type="Transparent"
+                    />
+                </OverflowToolbar>
+
+                <!-- Table de itens -->
+                <Table
+                    id="productsTableId"
+                    class="sapFDynamicPageAlingContent"
+                    width="auto"
+                    growing="true"
+                    growingThreshold="10"
+                    items="{
+                        path:'/Products',
+                        parameters: {
+                            expand: 'Category'
+                        },
+                        sorter: [
+                            {
+                                path: 'Category/CategoryName',
+                                descending: false,
+                                group: true
+                            },
+                            {
+                                path: 'ProductName'
+                            }
+                        ]
+                    }"
+                >
+                    <columns>
+                        <Column width="12rem">
+                            <Text text="Descrição" />
+                        </Column>
+
+                        <Column
+                            hAlign="End"
+                            vAlign="Middle"
+                        >
+                            <Text text="Price" />
+                        </Column>
+                    </columns>
+
+                    <items>
+                        <ColumnListItem
+                            type="Navigation"
+                            press=".onPressListItem"
+                        >
+                            <cells>
+                                <ObjectIdentifier
+                                    title="{ProductID} - {ProductName}"
+                                    text="{QuantityPerUnit}"
+                                />
+                                <ObjectNumber
+                                    class="sapUiSmallMarginBottom"
+                                    number="{
+                                        parts: [{path:'UnitPrice'},{value: 'BRL'}],
+                                        type:'sap.ui.model.type.Currency',
+                                        formatOptions: {showMeasure: false}
+                                    }"
+                                    unit="BRL"
+                                    state="{
+                                        path: 'UnitPrice',
+                                        formatter: '.formatter.priceStatus'
+                                    }"
+                                />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </VBox>
+        </f:content>
 
         <!-- <List
             headerText="Products"
